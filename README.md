@@ -4,6 +4,8 @@
   <img src="frontend/public/hyperion-logo.png" alt="Hyperion Logo" width="550"/>
 </p>
 
+<h1 align="center">🌞 Hyperion — The AI-Powered Energy Insight Engine</h1>
+
 
 Hyperion is an open-source, full-stack data intelligence platform that transforms raw, unstructured energy and sustainability data into real-time, actionable insights using AI, ETL pipelines, and cloud deployment.
 
