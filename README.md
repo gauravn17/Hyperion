@@ -1,5 +1,10 @@
 🌞 Hyperion — The AI-Powered Energy Insight Engine
 
+<p align="center">
+  <img src="frontend/public/hyperion-logo.png" alt="Hyperion Logo" width="200"/>
+</p>
+
+
 Hyperion is an open-source, full-stack data intelligence platform that transforms raw, unstructured energy and sustainability data into real-time, actionable insights using AI, ETL pipelines, and cloud deployment.
 
 It automates the analysis of CSVs, reports, and sensor data — providing clean dashboards and LLM-generated summaries that help organizations make faster, greener decisions.
