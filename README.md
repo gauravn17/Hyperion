@@ -1,100 +1,119 @@
-# Hyperion
-Hyperion is a modular, agentic AI system that autonomously collects, analyzes, and interprets real-world data.
+🌞 Hyperion — The AI-Powered Energy Insight Engine
 
-## 🌟 Overview
+Hyperion is an open-source, full-stack data intelligence platform that transforms raw, unstructured energy and sustainability data into real-time, actionable insights using AI, ETL pipelines, and cloud deployment.
 
-Hyperion continuously ingests live data (e.g., financial, environmental, or social metrics), processes it through analytical and forecasting models, and uses an LLM-driven agent layer to explain patterns in natural language.
+It automates the analysis of CSVs, reports, and sensor data — providing clean dashboards and LLM-generated summaries that help organizations make faster, greener decisions.
 
-It represents the foundation of an intelligent observatory system — one capable of *reasoning* about the data it sees.
+🚀 Features
 
-### 🔹 Core Loop
+⚡ AI-Driven Analysis — LangChain + OpenAI for natural-language summaries and recommendations
 
-Collect → Analyze → Forecast → Illuminate
+📊 Data Forecasting — Prophet / scikit-learn models for trend prediction
 
----
+☁️ AWS ETL Pipeline — Automated ingestion + cleaning via S3 & Lambda
 
-## 🧩 System Architecture
+🧩 Modern Backend — FastAPI microservice architecture with REST endpoints
 
-| Layer | Description | Technologies |
-|--------|--------------|--------------|
-| **Data Collection** | Fetches and cleans live data from APIs | Python, Pandas, Requests |
-| **Analytics Engine** | Computes KPIs, anomalies, correlations | NumPy, Pandas |
-| **Forecasting Module** | Predicts short-term trends | Prophet, Scikit-Learn |
-| **Agentic AI Layer** | Multi-agent reasoning + summarization | LangGraph, LangChain, OpenAI / local LLM |
-| **Interface Layer** | Interactive dashboard + chat | Streamlit, Plotly |
-| **Automation** | Scheduled daily pipeline runs | n8n, CRON, or GitHub Actions |
-| **Storage** | Lightweight database | SQLite (upgradeable to PostgreSQL) |
+💻 Interactive Frontend — Next.js + TypeScript dashboard for visualization
 
----
+🧠 Vector Database — ChromaDB integration for document retrieval and context memory
 
-## ⚙️ Features (MVP)
+🔒 Dockerized Deployment — Easily scalable with ECS, Render, or Docker Compose
 
-✅ Automated ETL pipeline for live data ingestion  
-✅ Trend and anomaly detection with Pandas/Numpy  
-✅ 7-day forecasting via Prophet  
-✅ Natural-language “Insight Summaries” powered by LLMs  
-✅ Interactive Streamlit dashboard for charts + chat  
-✅ Deployable public demo (Streamlit Cloud / Hugging Face Spaces)  
+🧠 Tech Stack
+Layer	Tools / Frameworks
+Frontend	Next.js · TypeScript · Tailwind CSS
+Backend	FastAPI · Python · LangChain · OpenAI API
+Data / AI	Pandas · ChromaDB · Prophet · scikit-learn
+Cloud / Infra	AWS (S3, Lambda, ECS) · Docker · GitHub Actions
+Other	Python-dotenv · Boto3 · Uvicorn
+⚙️ Architecture Overview
++------------------------------------------------------+
+|                     Frontend (Next.js)               |
+|      → User uploads data / views insights            |
++---------------------------▲--------------------------+
+                            |
+                            ▼
++------------------- FastAPI Backend ------------------+
+| /summarize_report  /forecast  /compare_sites         |
+| Integrates LangChain → LLM → ChromaDB → AWS ETL      |
++---------------------------▲--------------------------+
+                            |
+                            ▼
++------------------- Data & Storage Layer --------------+
+|  AWS S3 | PostgreSQL | ChromaDB | Pandas Pipelines   |
++------------------------------------------------------+
 
----
+🧩 Setup Instructions
+1. Clone the Repo
+git clone https://github.com/gauravn17/Hyperion.git
+cd Hyperion
 
-## 🧱 Project Structure
-
-hyperion-ai/
-│
-├── data/
-│   └── dataset.csv
-│
-├── src/
-│   ├── data_pipeline.py        # Fetch + clean + store data
-│   ├── analytics.py            # KPIs, anomaly detection
-│   ├── forecast.py             # Prophet forecasting
-│   ├── agent_layer.py          # LangGraph / LangChain logic
-│   └── utils.py                # Helper utilities
-│
-├── app.py                      # Streamlit dashboard entry
-├── requirements.txt
-├── README.md
-└── .gitignore
-
----
-
-## 🧭 Roadmap (4-Week Plan)
-
-| Week | Focus | Deliverable |
-|------|--------|-------------|
-| **1** | Build ETL pipeline | `data_pipeline.py` saves clean daily dataset |
-| **2** | Add analytics + forecasting | Visualize trends and 7-day predictions |
-| **3** | Integrate agent layer (LangChain) | Insight summarizer + chat interface |
-| **4** | Automate + deploy | n8n scheduling + public Streamlit app |
-
----
-
-## 🧠 Example Workflow
-
-1. **Collector Agent** — Fetches daily data from APIs  
-2. **Analyzer Agent** — Detects anomalies and computes KPIs  
-3. **Forecaster Agent** — Predicts upcoming values  
-4. **Illuminator Agent** — Uses an LLM to narrate findings  
-5. **Dashboard UI** — Displays live visuals and accepts user queries  
-
-> *“Hyperion observed a 3.7% uptick in volatility this week, coinciding with rising momentum in renewable-energy stocks.”*
-
----
-
-## 💻 Quickstart
-
-```bash
-# Clone repository
-git clone https://github.com/gauravnair/hyperion-ai.git
-cd hyperion-ai
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate on Windows
-
-# Install dependencies
+2. Backend Setup
+cd backend
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
+touch .env
 
-# Run Streamlit app
-streamlit run app.py
+
+Add the following to .env:
+
+OPENAI_API_KEY=your_api_key_here
+AWS_ACCESS_KEY_ID=your_aws_key
+AWS_SECRET_ACCESS_KEY=your_aws_secret
+
+
+Run the server:
+
+uvicorn app:app --reload
+
+3. Frontend Setup
+cd ../frontend
+npm install
+npm run dev
+
+
+Open http://localhost:3000
+ in your browser.
+
+🧪 Example Usage
+
+Upload a CSV like:
+
+Date,Energy_Produced,CO2_Emitted
+2025-10-01,1200,340
+2025-10-02,1350,330
+2025-10-03,1500,325
+
+
+Then call:
+
+curl -X POST "http://127.0.0.1:8000/summarize_report/" -F "file=@sample.csv"
+
+
+✅ Output:
+
+{
+  "summary": "Energy production increased steadily while CO₂ emissions declined, suggesting improved efficiency.",
+  "metrics": {...}
+}
+
+📈 Roadmap
+
+ Add time-series forecasting endpoint
+
+ Deploy Dockerized microservice on AWS ECS
+
+ Integrate ChromaDB vector search for long-term insights
+
+ Build interactive sustainability dashboard (Next.js)
+
+ Implement automated ETL pipeline with Lambda
+
+👨‍💻 Developer
+
+Gaurav Nair
+📍 UC San Diego · Math-CS Major
+🔗 LinkedIn
+ · GitHub
