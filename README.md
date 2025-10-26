@@ -1,7 +1,7 @@
 🌞 Hyperion — The AI-Powered Energy Insight Engine
 
 <p align="center">
-  <img src="frontend/public/hyperion-logo.png" alt="Hyperion Logo" width="200"/>
+  <img src="frontend/public/hyperion-logo.png" alt="Hyperion Logo" width="400"/>
 </p>
 
 
